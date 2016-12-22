@@ -28,6 +28,10 @@ public class DBManager extends SQLiteOpenHelper {
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){ }
 
+    /**
+     * Inserta un registro en la tabla
+     * @param registro Objeto con la infomracion a guardar
+     */
     public void insertaRegistro(Registro registro) {
         int[] aux = cuentaRegistros();
         if(aux[0] >= MAXIMO_REGISTROS)
@@ -46,12 +50,20 @@ public class DBManager extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Elimina un registro
+     * @param id Identificador del registro a eliminar
+     */
     public void eliminaRegistro(int id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete("registros", "_id="+id, null);
         db.close();
     }
 
+    /**
+     * Lee los registros almacenados
+     * @return ArrayList de objetos de la clase Registro
+     */
     public ArrayList<Registro> recuperarRegistros() {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<Registro> registros = new ArrayList<>();
@@ -77,6 +89,11 @@ public class DBManager extends SQLiteOpenHelper {
         return  registros;
     }
 
+    /**
+     * Consulta y cuenta todos los registros existentes
+     * @return Arreglo de tipo int que contiene al inicio el identificador del primer
+     *          registro y la suma de todos los registros respectivamente.
+     */
     private int[] cuentaRegistros() {
         SQLiteDatabase db = getReadableDatabase();
         String[] campos = {"_id","fecha"};
