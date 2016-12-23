@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 /**
- * Created by Darth on 18/12/2016.
+ * Created by Darth Leonard on 18/12/2016.
  */
 public class DBManager extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
